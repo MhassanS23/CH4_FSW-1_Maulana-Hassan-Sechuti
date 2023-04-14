@@ -1,16 +1,20 @@
-  <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item" ><a href="#">Car</a></li>
-      <li class="breadcrumb-item" ><a href="/cars">List Car</a></li>
-    </ol>
-  </nav>
+  <div class="container-atas">
 
-  <% if (message.length) { %>
-  <div class="alert alert-info alert-dismissible fade show" role="alert">
-    <strong><%= message %></strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" ><a href="#">Car</a></li>
+        <li class="breadcrumb-item" ><a href="/cars">List Car</a></li>
+      </ol>
+    </nav>
+  
+    <% if (message.length) { %>
+    <div class="alert alert-success alert-dismissible fade show" id="alert-successs" role="alert">
+      <strong><%= message %></strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %>
+
   </div>
-  <% } %>
 
   <div class="header">
     <h5>List Car</h5>
@@ -29,10 +33,9 @@
         <div class="card shadow">
           <img src=<%=cars?.image %> alt="">
           <div class="card-body">
-          <h6 class="card-title"><%=cars?.name %> / <%=cars?.size %>  <%=cars?.id %></h6>
+          <h6 class="card-title"><%=cars?.name %> / <%=cars?.size %></h6>
           <p class="cost"><%=cars.price %> / hari</p>
-          <div><i class="fa-solid fa-key" style="color: #a5afc0;"></i><%=cars?.createdAt %> - <%=cars?.updatedAt %></div>
-          <div><i class="fa-regular fa-clock" style="color: #a5afc0;"></i>Updated at 04 Apr 2023, 09.00</div>
+          <div><i class="fa-regular fa-clock" style="color: #a5afc0;"></i>Updated at <%=cars?.updatedAt %></div>
     
           <div class="btn-crud mt-2">
             <a type="button" class="btn btn-outline-danger btn-delete" data-bs-toggle="modal" data-bs-target="#deleteCar<%=cars.id%>"><i class="fa-solid fa-trash danger"></i>  Delete</a>
@@ -68,8 +71,12 @@
 
 
 <script>
-  $('#deleteCar').on('show.bs.modal', function (e) {
-    var id = $(e.relatedTarget).data('id');
-    $('#myForm').attr('action', '/cars/' + id + '/delete');
-  });
+  function formatRupiah(params) {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+  }).format(params);
+}
 </script>

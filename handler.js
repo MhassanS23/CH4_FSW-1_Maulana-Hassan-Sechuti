@@ -23,7 +23,7 @@ async function displayDelete(req, res){
     await cars_data.destroy({
         where: {id : req.params.id}
     }).then(cars =>{
-        req.flash('success', 'Data Cars Berhasil Dihapus!');
+        req.flash('success', 'Data Berhasil Dihapus!');
         res.redirect('/cars'); 
     }).catch(error=>{
         res.status(422).json(error)
@@ -63,7 +63,7 @@ async function createCar (req, res){
         size: req.body.size,
         image: result.url
     }).then(cars =>{
-        req.flash('success', 'Data Cars Berhasil Ditambahkan!');
+        req.flash('success', 'Data Berhasil Ditambahkan!');
         res.redirect('/cars'); 
     }).catch(error=>{
         res.status(422).json(error)
@@ -89,10 +89,10 @@ async function updateCar(req, res){
     }, {
         where: {id: ids}
     }).then(cars =>{
-        req.flash('success', 'Data Cars Berhasil Diubah!');
+        req.flash('success', 'Data Berhasil Diubah!');
         res.redirect('/cars');
     }).catch(error=>{
-        res.status(422).json("errornya", error)
+        res.status(422).json(error)
     })
 
 }

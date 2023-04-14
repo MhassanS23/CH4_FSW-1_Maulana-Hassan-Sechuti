@@ -376,6 +376,21 @@
     --bs-btn-hover-border-color: var(--color-bg1);
 }
 
+#alert-successs{
+    width: 60%;
+    text-align: center;
+    --bs-alert-color: var(--color-white);
+    --bs-alert-bg: var(--color-green);
+    --bs-alert-border-color: var(--bs-success-border-subtle);
+    --bs-alert-link-color: var(--bs-success-text-emphasis);
+}
+
+.container-atas{
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: 20% 80%;
+}
+
 @media (max-width: 1199.98px) {
     .result{
         grid-template-columns: repeat(2, 1fr);

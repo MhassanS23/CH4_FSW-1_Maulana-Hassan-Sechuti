@@ -1,6 +1,5 @@
-const carss = require("./cars.json");
 class Car{
-    static listCars = [carss];
+    static listCars = [];
 
     
     constructor(params){
