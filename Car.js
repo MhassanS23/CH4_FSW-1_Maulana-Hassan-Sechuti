@@ -1,21 +1,12 @@
+const carss = require("./cars.json");
 class Car{
-    static listCars = [
-        {
-            "id": 1,
-            "nama": "MOBIL JADUL",
-            "img": "car.jpg",
-            "type": "sedang",
-            "price": 20000,
-            "size": "kecil",
-        }        
-    ];
+    static listCars = [carss];
 
     
     constructor(params){
         this.id = this._generateId()
         this.nama = params.nama;
         this.img = params.img;
-        this.type = params.type;
         this.price = params.price;
         this.size = params.size;
     }

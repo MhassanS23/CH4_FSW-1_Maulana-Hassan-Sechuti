@@ -1,4 +1,4 @@
-const Car = require("./Car")
+const Car = require("../Car")
 
 
 function setCar(req, res, next){

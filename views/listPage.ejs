@@ -1,0 +1,57 @@
+  <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item" ><a href="#">Car</a></li>
+      <li class="breadcrumb-item" ><a href="/cars">List Car</a></li>
+    </ol>
+  </nav>
+
+
+  <div class="header">
+    <h5>List Car</h5>
+    <a href="/createCar" type="button" class="btn btn-add rounded-0"><span><i class="fa-solid fa-plus" ></i></span> Add New Car</a>
+  </div>
+
+  <div class="btn-size">
+    <button type="button" class="btn btn-outline-secondary">All</button>
+    <button type="button" class="btn btn-outline-secondary">Small</button>
+    <button type="button" class="btn btn-outline-secondary">Medium</button>
+    <button type="button" class="btn btn-outline-secondary">Large</button>
+  </div>
+
+  <div class="result" id="cars-container">
+    <% data.forEach(cars => { %>
+        <div class="card shadow">
+          <img src=<%=cars.image %> alt="">
+          <div class="card-body">
+          <h6 class="card-title"><%=cars.name %> / <%=cars.size %>  <%=cars.id %></h6>
+          <p class="cost"><%=cars.price %> / hari</p>
+          <div><i class="fa-solid fa-key" style="color: #a5afc0;"></i><%=cars.createdAt %> - <%=cars.updatedAt %></div>
+          <div><i class="fa-regular fa-clock" style="color: #a5afc0;"></i>Updated at 04 Apr 2023, 09.00</div>
+    
+          <div class="btn-crud mt-2">
+            <a type="button" class="btn btn-outline-danger btn-delete" data-bs-toggle="modal" data-id="<%=cars.id %>" data-bs-target="#deleteCar"><i class="fa-solid fa-trash danger"></i>  Delete</a>
+            <a class="btn btn-success btn-edit" href="/updateCar/<%=cars.id%>" type="button"><i class="fa-regular fa-pen-to-square" ></i>  Edit</a>
+          </div>
+          </div>
+        </div>
+
+        <form id="myForm" action="/cars/<%=cars.id %>/delete" method="get">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit">Delete User</button>
+        </form>
+
+      <% }) %>
+  </div>
+
+  
+
+  <%- include('modalDelete.ejs') %>
+
+
+
+<script>
+  $('#deleteCar').on('show.bs.modal', function (e) {
+    var id = $(e.relatedTarget).data('id');
+    $('#myForm').attr('action', '/cars/' + id + '/delete');
+  });
+</script>

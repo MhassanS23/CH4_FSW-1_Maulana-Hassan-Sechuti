@@ -1,0 +1,50 @@
+  <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item" ><a href="#">Car</a></li>
+      <li class="breadcrumb-item"><a href="/cars">List Car</a></li>
+      <li class="breadcrumb-item"><a href="/createCar">Add New Car</a></li>
+    </ol>
+  </nav>
+
+  <h5 class="title mb-3">Add New Car</h5>
+
+<form action="/createCar" method="post" enctype="multipart/form-data">
+
+  <div class="group">
+    <div class="form-masukan mb-3">
+        <h6>Nama <span style="color:red">*</span></h6>
+        <input type="text" name="name" class="form-control" id="inputNama" placeholder="Masukkan Nama...">
+    </div>
+
+    <div class="form-masukan mb-3">
+        <h6>Harga <span style="color:red">*</span></h6>
+        <input type="text" name="price" class="form-control" id="inputHarga" placeholder="Masukkan Harga...">
+    </div>
+
+    <div class="form-masukan mb-3">
+      <h6>Size <span style="color:red">*</span></h6>
+      <select class="form-select" name="size" aria-label="Default select example">
+        <option selected hidden>Pilih ukuran</option>
+        <option value="Small">Small</option>
+        <option value="Middle">Middle</option>
+        <option value="Big">Big</option>
+      </select>
+  </div>
+    
+    <div class="form-masukan mb-3">
+        <h6>Foto <span style="color:red">*</span></h6>
+        <div class="input-foto">
+          <input type="file" accept="image/*" name="img" class="form-control" id="inputFoto" placeholder="Masukkan Foto...">
+          <p>File size max 2MB</p>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="btn-submit">
+  <button class="btn btn-outline-primary">cancel</button>
+  <button type="submit" class="btn btn-primary">save</button>
+</div>
+
+</form>
