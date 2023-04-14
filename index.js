@@ -5,6 +5,9 @@ const handler = require('./handler');
 const middleware = require('./Middleware/middleware');
 const expressLayout = require('express-ejs-layouts');
 const upload = require("./utils/multer");
+const session = require('express-session');
+const flash = require('connect-flash');
+require('dotenv').config()
 
 
 
@@ -12,6 +15,12 @@ app.use(express.json({limit: "50m"}));
 app.use(express.urlencoded({limit: "50mb", extended: false}));
 app.use(expressLayout);
 app.set("view engine", "ejs");
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(flash());
 
 app.use("/public", express.static(__dirname + "/public"))
 
@@ -26,7 +35,6 @@ app.get("/cars/:id/delete", handler.displayDelete);
 app.get("/cars/:id", middleware.setCar, handler.getBookById);
 app.post("/createCar", upload.single('img'), handler.createCar);
 app.post("/updateCar/:id", upload.single('img'), handler.updateCar);
-app.post("/deleteCar/:id", handler.deleteCar);
 
 app.listen(port, ()=>{
     console.log(

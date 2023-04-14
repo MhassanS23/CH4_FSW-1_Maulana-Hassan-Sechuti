@@ -1,18 +1,17 @@
-<div class="modal fade" id="deleteCar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-contents">
-        
-        <div class="modal-body">
-            <img src="../public/image/img-BeepBeep.png" alt="">
-            <h6>Menghapus Data Mobil</h6>
-            <p>Setelah dihapus, data mobil tidak dapat dikembalikan. Yakin ingin menghapus?</p>
-            <div class="d-flex gap-4 w-75">
-              <input type="hidden" name="_method" value="DELETE">
-              <button type="submit">Delete User</button>
-              <button type="button" class="btn btn-outline-primary w-100" data-bs-dismiss="modal" aria-label="Close">Tidak</button>
-            </div>
-        </div>
-
+<div class="modal fade" id="deleteCar<%=cars.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-contents">
+    <form action="/cars/<%=cars.id%>/delete" method="get">
+      <div class="modal-body">
+          <img src="../public/image/img-BeepBeep.png" alt="">
+          <h6>Menghapus Data Mobil</h6>
+          <p>Setelah dihapus, data mobil tidak dapat dikembalikan. Yakin ingin menghapus?</p>
+          <div class="d-flex gap-4 w-75">
+            <button type="submit" class="btn btn-primary w-100">Ya</button>
+            <button type="button" class="btn btn-outline-primary w-100" data-bs-dismiss="modal" aria-label="Close">Tidak</button>
+          </div>
       </div>
+    </form>
     </div>
   </div>
+</div>

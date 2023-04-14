@@ -306,6 +306,19 @@
     --bs-btn-active-bg: var(--color-bg1);
 }
 
+.modal-body .btn{
+    border: 1px solid var(--color-bg1);
+    padding: 0.6rem 0.8rem;
+}
+
+.modal-body .btn-primary{
+    --bs-btn-bg: var(--color-bg1);
+    --bs-btn-border-color: var(--color-bg1);
+    --bs-btn-hover-color: var(--color-bg1);
+    --bs-btn-hover-bg: var(--color-grey);
+    --bs-btn-hover-border-color: var(--color-bg1);
+}
+
 .modal-contents{
     background-color: var(--color-white);
     padding: 1rem 2rem;
@@ -346,17 +359,9 @@
     gap: 1rem;
 }
 
-.btn-submit .btn:hover{
-    font-weight: 700;
-    color: var(--color-bg1);
-    background-color: transparent;
-    border-color: var(--color-bg1);
-    border: 1px solid var(--color-bg1);
-}
-
 .btn-submit .btn-outline-primary{
-    --bs-btn-hover-color: var(--color-bg1);
-    --bs-btn-hover-bg: transparent;
+    --bs-btn-hover-color: var(--color-white);
+    --bs-btn-hover-bg: var(--color-bg1);
     --bs-btn-hover-border-color: var(--color-bg1);
     --bs-btn-active-color: none;
     --bs-btn-color: var(--color-bg1);
@@ -366,6 +371,9 @@
 .btn-submit .btn-primary{
     --bs-btn-bg: var(--color-bg1);
     --bs-btn-border-color: var(--color-bg1);
+    --bs-btn-hover-color: var(--color-bg1);
+    --bs-btn-hover-bg: transparent;
+    --bs-btn-hover-border-color: var(--color-bg1);
 }
 
 @media (max-width: 1199.98px) {

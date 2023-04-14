@@ -5,6 +5,12 @@
     </ol>
   </nav>
 
+  <% if (message.length) { %>
+  <div class="alert alert-info alert-dismissible fade show" role="alert">
+    <strong><%= message %></strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <% } %>
 
   <div class="header">
     <h5>List Car</h5>
@@ -21,31 +27,43 @@
   <div class="result" id="cars-container">
     <% data.forEach(cars => { %>
         <div class="card shadow">
-          <img src=<%=cars.image %> alt="">
+          <img src=<%=cars?.image %> alt="">
           <div class="card-body">
-          <h6 class="card-title"><%=cars.name %> / <%=cars.size %>  <%=cars.id %></h6>
+          <h6 class="card-title"><%=cars?.name %> / <%=cars?.size %>  <%=cars?.id %></h6>
           <p class="cost"><%=cars.price %> / hari</p>
-          <div><i class="fa-solid fa-key" style="color: #a5afc0;"></i><%=cars.createdAt %> - <%=cars.updatedAt %></div>
+          <div><i class="fa-solid fa-key" style="color: #a5afc0;"></i><%=cars?.createdAt %> - <%=cars?.updatedAt %></div>
           <div><i class="fa-regular fa-clock" style="color: #a5afc0;"></i>Updated at 04 Apr 2023, 09.00</div>
     
           <div class="btn-crud mt-2">
-            <a type="button" class="btn btn-outline-danger btn-delete" data-bs-toggle="modal" data-id="<%=cars.id %>" data-bs-target="#deleteCar"><i class="fa-solid fa-trash danger"></i>  Delete</a>
+            <a type="button" class="btn btn-outline-danger btn-delete" data-bs-toggle="modal" data-bs-target="#deleteCar<%=cars.id%>"><i class="fa-solid fa-trash danger"></i>  Delete</a>
             <a class="btn btn-success btn-edit" href="/updateCar/<%=cars.id%>" type="button"><i class="fa-regular fa-pen-to-square" ></i>  Edit</a>
           </div>
           </div>
         </div>
 
-        <form id="myForm" action="/cars/<%=cars.id %>/delete" method="get">
-          <input type="hidden" name="_method" value="DELETE">
-          <button type="submit">Delete User</button>
-        </form>
+        <div class="modal" id="deleteCar<%=cars.id%>" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content w-75">
+            <form action="/cars/<%=cars.id%>/delete" method="get">
+              <div class="modal-body">
+                <img src="../public/image/img-BeepBeep.png" alt="">
+                <h6>Menghapus Data Mobil</h6>
+                <p>Setelah dihapus, data mobil tidak dapat dikembalikan. Yakin ingin menghapus?</p>
+                <div class="d-flex gap-4 w-75">
+                  <button type="submit" class="btn btn-primary w-100">Ya</button>
+                  <button type="button" class="btn btn-outline-primary w-100" data-bs-dismiss="modal" aria-label="Close">Tidak</button>
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
 
       <% }) %>
   </div>
 
   
 
-  <%- include('modalDelete.ejs') %>
 
 
 

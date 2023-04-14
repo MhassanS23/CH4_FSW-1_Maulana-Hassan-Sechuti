@@ -3,10 +3,12 @@ const {cloudinary} = require("./utils/cloudinary");
 const {cars_data} = require('./models')
 
 function getListCar(req, res){
+    const message = req.flash('success');
     cars_data.findAll().then(cars=>{
         res.render("listPage", {
             title: "Cars Page",
-            data: cars
+            data: cars,
+            message: message
         })
     })
 }
@@ -21,6 +23,7 @@ async function displayDelete(req, res){
     await cars_data.destroy({
         where: {id : req.params.id}
     }).then(cars =>{
+        req.flash('success', 'Data Cars Berhasil Dihapus!');
         res.redirect('/cars'); 
     }).catch(error=>{
         res.status(422).json(error)
@@ -60,6 +63,7 @@ async function createCar (req, res){
         size: req.body.size,
         image: result.url
     }).then(cars =>{
+        req.flash('success', 'Data Cars Berhasil Ditambahkan!');
         res.redirect('/cars'); 
     }).catch(error=>{
         res.status(422).json(error)
@@ -85,18 +89,12 @@ async function updateCar(req, res){
     }, {
         where: {id: ids}
     }).then(cars =>{
+        req.flash('success', 'Data Cars Berhasil Diubah!');
         res.redirect('/cars');
     }).catch(error=>{
         res.status(422).json("errornya", error)
     })
 
-}
-
-function deleteCar(req, res){
-   const result = req.body;
-    const data = req.params;
-
-    res.json(data)
 }
 
 
@@ -105,7 +103,6 @@ module.exports = {
     getListCar,
     createCar,
     updateCar,
-    deleteCar,
     getBookById,
     displayCreate,
     displayDashboard,
