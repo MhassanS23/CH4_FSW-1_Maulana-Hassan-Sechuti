@@ -4,14 +4,26 @@ const {cars_data} = require('./models')
 
 function getListCar(req, res){
     const message = req.flash('success');
+    const error = req.flash('error');
     cars_data.findAll().then(cars=>{
         res.render("listPage", {
             title: "Cars Page",
             data: cars,
-            message: message
+            message: message,
+            formatRupiah : formatRupiah,
+            error: error
         })
     })
 }
+
+function formatRupiah(params) {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      maximumFractionDigits: 0,
+      minimumFractionDigits: 0,
+    }).format(params);
+  }
 
 function displayDashboard(req, res){
     res.render('dashboard', {
@@ -23,10 +35,11 @@ async function displayDelete(req, res){
     await cars_data.destroy({
         where: {id : req.params.id}
     }).then(cars =>{
-        req.flash('success', 'Data Berhasil Dihapus!');
+        req.flash('error', 'Data Berhasil Dihapus!');
         res.redirect('/cars'); 
     }).catch(error=>{
-        res.status(422).json(error)
+        req.flash('error', 'Data Gagal Dihapus!');
+        res.redirect('/cars');
     })
 }
 
@@ -66,7 +79,8 @@ async function createCar (req, res){
         req.flash('success', 'Data Berhasil Ditambahkan!');
         res.redirect('/cars'); 
     }).catch(error=>{
-        res.status(422).json(error)
+        req.flash('error', 'Data Gagal Ditambahkan!');
+        res.redirect('/cars');
     })
 }
 
@@ -92,7 +106,8 @@ async function updateCar(req, res){
         req.flash('success', 'Data Berhasil Diubah!');
         res.redirect('/cars');
     }).catch(error=>{
-        res.status(422).json(error)
+        req.flash('error', 'Data Gagal Diubah!');
+        res.redirect('/cars');
     })
 
 }

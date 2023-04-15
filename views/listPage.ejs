@@ -10,6 +10,13 @@
     <% if (message.length) { %>
     <div class="alert alert-success alert-dismissible fade show" id="alert-successs" role="alert">
       <strong><%= message %></strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-solid fa-x" style="color: #ffffff;"></i></button>
+    </div>
+    <% } %>
+
+    <% if (error.length) { %>
+    <div class="alert alert-dark alert-dismissible fade show" id="alert-darks" role="alert">
+      <strong><%= error %></strong>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <% } %>
@@ -34,7 +41,7 @@
           <img src=<%=cars?.image %> alt="">
           <div class="card-body">
           <h6 class="card-title"><%=cars?.name %> / <%=cars?.size %></h6>
-          <p class="cost"><%=cars.price %> / hari</p>
+          <p class="cost"><%=formatRupiah(cars.price)%> / hari</p>
           <div><i class="fa-regular fa-clock" style="color: #a5afc0;"></i>Updated at <%=cars?.updatedAt %></div>
     
           <div class="btn-crud mt-2">
@@ -67,16 +74,3 @@
 
   
 
-
-
-
-<script>
-  function formatRupiah(params) {
-  return new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-    maximumFractionDigits: 0,
-    minimumFractionDigits: 0,
-  }).format(params);
-}
-</script>

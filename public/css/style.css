@@ -385,6 +385,19 @@
     --bs-alert-link-color: var(--bs-success-text-emphasis);
 }
 
+#alert-darks{
+    width: 60%;
+    text-align: center;
+    --bs-alert-color: var(--color-white);
+    --bs-alert-bg: black;
+    --bs-alert-border-color: var(--color-white);
+    --bs-alert-link-color: var(--color-white);
+}
+
+#alert-darks button{
+    --bs-btn-close-color: var(--color-white);
+}
+
 .container-atas{
     display: grid;
     gap: 4rem;
