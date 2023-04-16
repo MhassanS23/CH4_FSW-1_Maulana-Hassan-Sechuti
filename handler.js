@@ -32,8 +32,9 @@ function displayDashboard(req, res){
 }
 
 async function displayDelete(req, res){
+    const ids = req.params.id
     await cars_data.destroy({
-        where: {id : req.params.id}
+        where: {id : ids}
     }).then(cars =>{
         req.flash('error', 'Data Berhasil Dihapus!');
         res.redirect('/cars'); 
@@ -79,7 +80,7 @@ async function createCar (req, res){
         req.flash('success', 'Data Berhasil Ditambahkan!');
         res.redirect('/cars'); 
     }).catch(error=>{
-        req.flash('error', 'Data Gagal Ditambahkan!');
+        req.flash('error', 'Data Gagal Ditambahkan! Silahkan Cek Inputan Harga tidak boleh dari 9');
         res.redirect('/cars');
     })
 }
@@ -94,6 +95,7 @@ async function updateCar(req, res){
         const upload_img=  await cloudinary.uploader.upload(req.file.path);
          new_img = upload_img.url;
     }
+    console.log(ids);
 
     await cars_data.update({
         name: req.body?.name,

@@ -1,16 +1,16 @@
-const Car = require("../Car")
+const {cars_data} = require('../models')
 
 
-function setCar(req, res, next){
-    const cars = Car.find(req.params.id);
-
+async function setCar(req, res, next){
+    const id = req.params.id;
+    const cars = await cars_data.findByPk(id);
     if(!cars){
-        res.status(404).json({
-            error: "Cars not found!"
+        res.render('404_notfound',{
+            title: "404"
         });
-    return;
+        return;
     }
-    req.cars = cars;
+    req.cars = cars.id;
     next();
 }
 
